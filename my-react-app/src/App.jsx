@@ -1,64 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
-
-export default App
-
-
-// src/App.jsx
 import React, { useState } from "react";
 import Button from "./components/Button";
-import Input from "./components/Input";
 
-function App() {
+const App = () => {
   const [value, setValue] = useState("");
 
-  const handleInputChange = (e) => {
-    setValue(e.target.value);
+  const handleAlert = () => {
+    alert(`Значення: "${value || "порожньо"}"`);
   };
 
-  const handleClick = () => {
-    alert(`Ви ввели: ${value}`);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(`Надіслано: "${value || "порожньо"}"`);
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Мій перший React-компонент</h1>
-      <Input placeholder="Введіть текст..." onChange={handleInputChange} />
-      <Button text="Надіслати" type="button" onClick={handleClick} />
-      <p>Значення: {value}</p>
+    <div style={{ padding: 16 }}>
+      <h1>Приклад кнопки</h1>
+
+      {/* Невелика форма, щоб показати різні типи кнопок */}
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Введіть щось…"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          style={{ marginRight: 8 }}
+        />
+
+        {/* Кнопка типу "button" з onClick */}
+        <Button text="Показати alert" type="button" onClick={handleAlert} />
+
+        {/* Кнопка типу "submit" без onClick — спрацює onSubmit форми */}
+        <span style={{ marginLeft: 8 }}>
+          <Button text="Надіслати" type="submit" />
+        </span>
+      </form>
     </div>
   );
-}
+};
 
-// export default App;
+export default App;
