@@ -9,7 +9,7 @@
 
 - Клонування репозиторію
 
-Terminal: git clone https://github.com/your-username/my-react-app.git
+Terminal: git clone https://github.com/vlada9597/home-work-38.git
           cd my-react-app
 
 
